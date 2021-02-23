@@ -156,12 +156,12 @@ typedef struct co_job
 } co_job_t;
 
 /** Client state */
-typedef struct co_client
+struct co_client
 {
    os_sem_t * sem;
    co_job_t job;
    co_net_t * net;
-} co_client_t;
+};
 
 /** Heartbeat consumer state */
 typedef struct co_heartbeat
@@ -278,7 +278,7 @@ struct co_net
    void (*cb_notify) (void * arg, uint16_t index, uint8_t subindex);
 
    /** Function to open dictionary store */
-   void * (*open) (co_store_t store);
+   void * (*open) (co_store_t store, co_mode_t mode);
 
    /** Function to read from dictionary store */
    int (*read) (void * arg, void * data, size_t size);
